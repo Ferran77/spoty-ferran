@@ -12,10 +12,9 @@ export async function POST(
 
   try {
     const supabase = createRouteHandlerClient({ 
-      cookies
-      });      const {
-      data: { user }
-    } = await supabase.auth.getUser();
+      cookies,
+      });      
+      const {data: { user }} = await supabase.auth.getUser();
 
     const customer = await createOrRetrieveCustomer({
       uuid: user?.id || '',
