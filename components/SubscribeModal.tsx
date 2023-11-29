@@ -7,7 +7,6 @@ import { useUser } from '@/hooks/useUser';
 import { postData } from '@/libs/helpers';
 import { getStripe } from '@/libs/stripeClient';
 import { Price, ProductWithPrice } from '@/types';
-
 import Modal from './Modal';
 import Button from './Button';
 
@@ -16,7 +15,7 @@ interface SubscribeModalProps {
 }
 
 const formatPrice = (price: Price) => {
-  const priceString = new Intl.NumberFormat('es-MX', {
+  const priceString = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: price.currency,
     minimumFractionDigits: 0
@@ -42,6 +41,7 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({
 
   const handleCheckout = async (price: Price) => {
     setPriceIdLoading(price.id);
+
     if (!user) {
       setPriceIdLoading(undefined);
       return toast.error('Must be logged in');
@@ -71,7 +71,7 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({
     <div className="text-center">
       No products available.
     </div>
-  )
+  );
 
   if (products.length) {
     content = (
