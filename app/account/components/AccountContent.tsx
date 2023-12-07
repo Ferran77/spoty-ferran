@@ -35,7 +35,7 @@ const AccountContent = () => {
       }
     }
     setLoading(false);
-  }
+  };
 
   return (
     <div className="mb-7 px-6">
@@ -51,7 +51,7 @@ const AccountContent = () => {
         </div>
       )}
       {subscription && (
-        <div>
+        <div className="flex flex-col gap-y-4">
           <p>
             You are currently on the <b>{subscription?.prices?.products?.name}</b> plan
           </p>
