@@ -34,8 +34,8 @@ export const MyUserContextProvider = (props: Props) => {
   const getUserDetails = () => supabase.from('users').select('*').single();
   const getSubscription = () =>
     supabase
-      .from('subcriptions')
-      .select('*, products(*))')
+      .from('subscriptions')
+      .select('*, prices(*, products(*))')
       .in('status', ['trialing', 'active'])
       .single();
 
@@ -48,12 +48,12 @@ export const MyUserContextProvider = (props: Props) => {
           const userDetailsPromise = results[0];
           const subscriptionPromise = results[1];
 
-          if (userDetailsPromise.status === "fulfilled") {
+          if (userDetailsPromise.status === "fulfilled")
             setUserDetails(userDetailsPromise.value.data as UserDetails);
-          }
-          if (subscriptionPromise.status === "fulfilled") {
+
+          if (subscriptionPromise.status === "fulfilled")
             setSubscription(subscriptionPromise.value.data as Subscription);
-          }
+
 
           setIsLoadingData(false);
         }
@@ -63,6 +63,7 @@ export const MyUserContextProvider = (props: Props) => {
       setSubscription(null);
     }
   }, [user, isLoadingUser]);
+
   const value = {
     accessToken,
     user,
